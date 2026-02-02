@@ -450,24 +450,65 @@ h1, h2, h3, h4 {
     font-size: 1.2rem;
 }
 
-/* Galeria */
+/* ===== GALERIA ===== */
+
 .gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 32px;
   margin-top: 50px;
 }
 
+.gallery-item {
+  width: 110px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.gallery-item img {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 50%;
+  padding: 4px;
+  background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: block;
+  margin: 0 auto;
+}
+
+.story-label {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.6);
+}
+
+/* ===== MOBILE ===== */
 @media (max-width: 768px) {
+
   .gallery-grid {
+    display: flex;
     justify-content: flex-start;
+    align-items: center;
+
     overflow-x: auto;
-    padding: 10px 0 10px 10px;
+    overflow-y: hidden;
+
     gap: 16px;
-    grid-template-columns: repeat(2, 1fr);
+    padding: 16px; /* ⬅ espaço real nas laterais */
 
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
+
+    box-sizing: border-box;
   }
 
   .gallery-grid::-webkit-scrollbar {
@@ -480,40 +521,12 @@ h1, h2, h3, h4 {
   }
 }
 
-.gallery-item {
-  width: 110px;
-  cursor: pointer;
-  text-align: center;
-}
 
-.gallery-item img {
-  width: 110px;
-  height: 110px;
-  object-fit: cover;
-  border-radius: 50%;
-  padding: 4px;
-  background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-
-}
-
-.story-label {
-  display: block;
-  margin-top: 10px;
-  font-size: 0.85rem;
-  font-weight: 500;
-}
-
-.gallery-item:hover img {
-    transform: scale(1.1);
-      box-shadow: 0 0 0 3px rgba(255,255,255,0.6);
-
-}
 
 /* Emocional Parallax */
 .emotional-cta {
     height: 500px;
-    background-image: url('https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?q=80&w=1600&auto=format&fit=crop');
+    background-image: url('https://img.cancaonova.com/cnimages/canais/uploads/sites/6/2015/10/formacao_o-significado-de-cada-letra-da-palavra-familia.jpg');
     background-attachment: fixed; /* Parallax simples CSS */
     background-size: cover;
     background-position: center;
@@ -828,53 +841,89 @@ h1, h2, h3, h4 {
     opacity: 1;
     transform: none;
 }
-
+/* ===== GALERIA MOBILE (CORREÇÃO FINAL) ===== */
 @media (max-width: 768px) {
+
+  /* remove padding do container SÓ nessa seção */
+  .showcase .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .gallery-grid {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    gap: 16px;
+    padding: 16px 20px; /* ⬅ padding controlado aqui */
+
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+
+    box-sizing: border-box;
+  }
+
+  .gallery-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gallery-item {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+  }
+}
+
+/* ===== HERO MOCKUP — MOBILE LIMPO ===== */
+@media (max-width: 768px) {
+
   .hero-visual {
     width: 100%;
-    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
   }
 
   .magnet-mockup-wrapper {
-    height: 360px;
     width: 100%;
-    max-width: 100%;
-    overflow: hidden;
+    height: auto;
+    perspective: none;
 
     display: flex;
-    align-items: center;
     justify-content: center;
-
-    perspective: none; /* ⬅ remove 3D no mobile */
+    align-items: center;
   }
 
   .magnet-card {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%) !important;
-    will-change: transform;
+    position: relative;
+    inset: auto;
+    transform: none !important;
+
+    width: 220px;
+    height: 220px;
+
+    box-shadow:
+      0 12px 30px rgba(0,0,0,0.18);
   }
 
-  /* Card principal */
-  .main-magnet {
-    width: 240px;
-    height: 240px;
-    z-index: 2;
-  }
-
-  /* Card secundário */
+  /* MOSTRA APENAS O PRINCIPAL */
   .secondary-magnet {
-    width: 210px;
-    height: 210px;
-    z-index: 1;
-    opacity: 0.9;
-    transform: translate(-50%, -50%) scale(0.94) !important;
+    display: none;
+  }
+}
+/* ===== FOOTER MOBILE (CORREÇÃO FINAL) ===== */
+@media (max-width: 768px) {
+
+  .footer {
+    padding-top: 60px;
   }
 
-   .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
+  .footer-grid {
+    grid-template-columns: 1fr; /* ⬅ uma coluna */
+    gap: 32px;
     text-align: center;
   }
 
@@ -883,11 +932,20 @@ h1, h2, h3, h4 {
   }
 
   .footer-description {
-    margin: 16px auto 0;
+    margin: 12px auto 0;
+    max-width: 280px;
+  }
+
+  .footer-links a {
+    margin-bottom: 10px;
   }
 
   .footer-social .socials {
     justify-content: center;
   }
-}
 
+  .footer-bottom {
+    padding: 16px 0;
+    font-size: 0.8rem;
+  }
+}
