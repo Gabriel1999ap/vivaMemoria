@@ -3,7 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Registrar Plugins GSAP
   gsap.registerPlugin(ScrollTrigger);
   if (window.innerWidth < 768) {
-    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    ScrollTrigger.getAll().forEach((t) => t.kill());
+    gsap.globalTimeline.clear();
   }
 
   // --- Hero Animations ---
@@ -48,7 +49,9 @@ document.addEventListener("DOMContentLoaded", () => {
     rotation: -5,
     duration: 3,
     yoyo: true,
-    repeat: 3,
+    repeat: -1,
+    repeatDelay: 1,
+
     ease: "sine.inOut",
   });
 
@@ -57,18 +60,20 @@ document.addEventListener("DOMContentLoaded", () => {
     rotation: 8,
     duration: 4,
     yoyo: true,
-    repeat: 3,
+    repeat: -1,
+    repeatDelay: 1,
+
     ease: "sine.inOut",
     delay: 0.5,
   });
 
   // Efeito de brilho passando no ímã (Gloss)
   gsap.to(".resin-glass", {
-    backgroundPosition: "200% 0",
-    duration: 2.5,
-    repeat: 3,
-    repeatDelay: 3,
-    ease: "power1.inOut",
+    opacity: 0.85,
+    duration: 1.2,
+    yoyo: true,
+    repeat: -1,
+    ease: "sine.inOut",
   });
 
   // --- Scroll Animations ---
@@ -173,7 +178,9 @@ document.addEventListener("DOMContentLoaded", () => {
     boxShadow: "0 0 20px rgba(108, 92, 231, 0.4)",
     duration: 0.8,
     yoyo: true,
-    repeat: 3,
+    repeat: -1,
+    repeatDelay: 1,
+
     ease: "sine.inOut",
   });
 
@@ -195,8 +202,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // Smooth Scroll para links âncora
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
+      const target = this.getAttribute("href");
+
+      if (target === "#" || !document.querySelector(target)) return;
+
       e.preventDefault();
-      document.querySelector(this.getAttribute("href")).scrollIntoView({
+      document.querySelector(target).scrollIntoView({
         behavior: "smooth",
       });
     });
@@ -319,5 +330,10 @@ function closeStory() {
   clearTimeout(timer);
   modal.style.display = "none";
 }
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    closeStory();
+  }
+});
 
 modal.addEventListener("click", closeStory);

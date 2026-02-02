@@ -39,7 +39,16 @@
           VivaMemória
         </a>
 
-        <button class="cta-btn-nav">Criar Agora</button>
+        <button
+          class="cta-btn-nav"
+          onclick="
+            document
+              .querySelector('#combos')
+              .scrollIntoView({ behavior: 'smooth' })
+          "
+        >
+          Criar Agora
+        </button>
       </div>
     </nav>
 
@@ -56,9 +65,10 @@
             para sempre.
           </p>
           <div class="hero-actions">
-            <a href="#comprar" class="btn btn-primary pulse-btn"
-              >Crie o seu agora</a
-            >
+            <a href="#combos" class="btn btn-primary pulse-btn">
+              Crie o seu agora
+            </a>
+
             <div class="trust-badge">
               <i class="fas fa-star"></i>
               <span>+5.000 clientes felizes</span>
@@ -73,6 +83,7 @@
               <img
                 src="https://storage.alboom.ninja/sites/33439/galleries/43854/ensaio_de_casal_em_campo_limpo_paulista__14_.jpg?t=1697095776"
                 alt="Foto de casal feliz"
+                loading="lazy"
               />
             </div>
 
@@ -82,6 +93,7 @@
               <img
                 src="https://img.cancaonova.com/cnimages/canais/uploads/sites/6/2008/06/formacao_1600x1200-familia-muito-mais-que-um-conjunto-de-pessoas.jpg"
                 alt="Foto de Familia"
+                loading="lazy"
               />
             </div>
           </div>
@@ -304,22 +316,57 @@
       <div class="container">
         <h2>Pronto para eternizar seus momentos?</h2>
         <p>Frete grátis para compras acima de R$ 100,00.</p>
-        <a href="#" class="btn btn-primary btn-large cta-pulse"
+        <a href="#combos" class="btn btn-primary btn-large cta-pulse"
           >Começar Agora</a
         >
         <p class="small-text">Satisfação garantida ou seu dinheiro de volta.</p>
       </div>
     </section>
 
-    <footer>
-      <div class="container footer-content">
-        <p>&copy; 2024 Memoria Magnets. Feito com amor.</p>
-        <div class="socials">
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-whatsapp"></i></a>
+    <footer class="footer">
+      <div class="container footer-grid">
+        <!-- Marca -->
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="logo-icon">
+              <span class="heart">♥</span>
+            </span>
+            VivaMemória
+          </div>
+          <p class="footer-description">
+            Transformamos fotos em memórias físicas que duram para sempre.
+          </p>
+        </div>
+
+        <!-- Links rápidos -->
+        <div class="footer-links">
+          <h4>Explorar</h4>
+          <a href="#como-funciona">Como funciona</a>
+          <a href="#combos">Preços</a>
+          <a href="#">Criar agora</a>
+        </div>
+
+        <!-- Contato / Social -->
+        <div class="footer-social">
+          <h4>Fale com a gente</h4>
+          <div class="socials">
+            <a href="#" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" aria-label="WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+          <span class="footer-cta">Atendimento rápido pelo WhatsApp 💬</span>
         </div>
       </div>
+
+      <!-- Base -->
+      <div class="footer-bottom">
+        <p>© 2024 VivaMemória. Feito com amor no Brasil 🇧🇷</p>
+      </div>
     </footer>
+
     <div class="story-modal" id="storyModal">
       <div class="story-progress" id="storyProgress"></div>
 
