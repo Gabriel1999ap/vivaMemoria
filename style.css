@@ -632,13 +632,6 @@ footer {
     .emotional-content h2 { font-size: 2rem; }
 }
 
-@media (max-width: 768px) {
-  .gallery-grid {
-    overflow-x: auto;
-    justify-content: flex-start;
-    padding: 0 20px;
-  }
-}
 
 @media (max-width: 600px) {
   .story-modal img {
@@ -739,4 +732,36 @@ footer {
 .step-card {
     opacity: 1;
     transform: none;
+}
+
+@media (max-width: 768px) {
+  .magnet-mockup-wrapper {
+    height: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .magnet-card {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) !important;
+  }
+
+  /* Card principal */
+  .main-magnet {
+    width: 240px;
+    height: 240px;
+    z-index: 2;
+  }
+
+  /* Card secundário (atrás, centralizado) */
+  .secondary-magnet {
+    width: 210px;
+    height: 210px;
+    z-index: 1;
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(0.95) !important;
+  }
 }
