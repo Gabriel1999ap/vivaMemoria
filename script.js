@@ -247,8 +247,15 @@ const stories = {
     "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200",
   ],
   2: [
-    "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200",
-    "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1200",
+    "img/momentos.jpeg",
+    "img/momentos%20(1).png",
+    "img/momentos%20(2).png",
+    "img/momentos%20(3).png",
+    "img/momentos%20(4).png",
+    "img/momentos%20(5).png",
+    "img/momentos%20(6).png",
+    "img/momentos%20(7).png",
+    "img/momentos%20(8).png",
   ],
   3: [
     "https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=1200",
@@ -264,6 +271,10 @@ let currentStory = [];
 let currentIndex = 0;
 let timer;
 const STORY_TIME = 5000;
+
+const leftZone = document.querySelector(".story-zone.left");
+const rightZone = document.querySelector(".story-zone.right");
+const closeBtn = document.getElementById("closeStoryBtn");
 
 document.querySelectorAll(".gallery-item").forEach((item) => {
   item.addEventListener("click", () => {
@@ -317,12 +328,19 @@ function showStory() {
 }
 
 function nextStory() {
+  clearTimeout(timer);
   currentIndex++;
 
   if (currentIndex < currentStory.length) {
     showStory();
   } else {
     closeStory();
+  }
+}
+function prevStory() {
+  if (currentIndex > 0) {
+    currentIndex--;
+    showStory();
   }
 }
 
@@ -336,4 +354,19 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-modal.addEventListener("click", closeStory);
+rightZone.addEventListener("click", (e) => {
+  e.stopPropagation();
+  nextStory();
+});
+
+leftZone.addEventListener("click", (e) => {
+  e.stopPropagation();
+  prevStory();
+});
+
+closeBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  closeStory();
+});
+
+// modal.addEventListener("click", closeStory);
